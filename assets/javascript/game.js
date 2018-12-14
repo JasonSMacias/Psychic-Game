@@ -8,6 +8,23 @@ var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
 var guessesLeft = 9;
 var guessTarget = alphabet[Math.floor(Math.random() * alphabet.length)];
 console.log("guessTarget " + guessTarget);
+
+// ============================================== Note: the next two commented sections are not working, I am adding them in order to have someone look at the page and give feedback.  rest of page works if they are cut out.========================================
+
+// setting up variables for html ids
+var winCountHTM = document.getElementById("#winCount");
+var lossCountHTM = document.getElementById("#lossCount");
+var guessesLeftHTM = document.getElementById("#guessesLeft");
+var guessedHTM = document.getElementById("#guessed");
+
+
+// adding initial textcontent
+winCountHTM.textContent = "Wins: ";
+lossCountHTM.textContent = "Losses: ";
+guessesLeftHTM = "Guesses Left: ";
+guessedHTM = "Your Guesses So Far:";
+
+
 // setting up function to occur when button pressed. recording keystroke in var "guess"
 document.onkeyup = function (event) {
   var guess = event.key;
