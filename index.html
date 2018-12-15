@@ -13,25 +13,43 @@
 
 <body>
   <div class="container">
-    
-    <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="assets/images/512px-Glaskugel_CrystalBall.jpg" alt="Glaskugel Crystal Ball">
-  <div class="card-body">
-    <h5 class="card-title">The Psychic Game</h5>
-    <p class="card-text">
-      Guess what letter I'm thinking of and type it in.
-    </p>
 
-    <p class="card-text">
-      <div id="winCount"></div>
-      <div id="lossCount"></div>
-      <div id="guessesLeft"></div>
-      <div id="guessed"></div>
-    </p>
+    <div class="row">
     
+      <div class="card" style="width: 16rem;">
+        <img class="card-img-top" src="assets/images/512px-Glaskugel_CrystalBall.jpg" alt="Glaskugel Crystal Ball">
+        <div class="card-body">
+        <h5 class="card-title">The Psychic Game</h5>
+        <p class="card-text">
+          Guess what letter I'm thinking of and type it in.
+        </p>
+
+        <p class="card-text">
+          <div id="winCount"></div>
+          <div id="lossCount"></div>
+          <div id="guessesLeft"></div>
+          <div id="guessed"></div>
+        </p>
+      
+        </div>
+
       </div>
-    </div>
 
+      <div>
+        <div>
+          
+          <p class="card-text">
+            <br />
+            <div class="alert alert-success" id="alert-success" role="alert">You got it! Try again.</div>
+            <div class="alert alert-danger" id="alert-fail" role="alert">You lost that one. Try again!</div>
+            <div class="alert alert-warning" id="alert-not-letter" role="alert">You must type a letter.</div>
+          </p>
+          
+        </div>
+      </div>
+        
+
+    </div>
     
   </div>
 

@@ -1,4 +1,9 @@
 window.onload = function() {
+// hiding alerts elements
+document.getElementById("alert-success").style.visibility = "hidden";
+document.getElementById("alert-fail").style.visibility = "hidden";
+document.getElementById("alert-not-letter").style.visibility = "hidden";
+
   // setting up variables to be used and alphabet array
 var guess;
 var guessed = [];
@@ -10,25 +15,30 @@ var guessesLeft = 9;
 var guessTarget = alphabet[Math.floor(Math.random() * alphabet.length)];
 console.log("guessTarget " + guessTarget);
 
-// ============================================== Note: the next two commented sections are not working, I am adding them in order to have someone look at the page and give feedback.  rest of page works if they are cut out.========================================
 
 // setting up variables for html ids
 var winCountHTM = document.getElementById("winCount");
 var lossCountHTM = document.getElementById("lossCount");
 var guessesLeftHTM = document.getElementById("guessesLeft");
 var guessedHTM = document.getElementById("guessed"); 
+var successAlertHTM = document.getElementById("alert-success");
+var failAlertHTM = document.getElementById("alert-fail");
+var NotLetterAlertHTM = document.getElementById("alert-not-letter");
 
 // adding initial textcontent
 winCountHTM.textContent = "Wins: ";
 lossCountHTM.textContent = "Losses: ";
 guessesLeftHTM.textContent = "Guesses Left: 9";
-guessedHTM.textContent = "Your Guesses So Far:";
+guessedHTM.textContent = "Your Guesses:";
 
 
-// setting up function to occur when button pressed. recording keystroke in var "guess"
+// setting up function to occur when button pressed. recording keystroke in var "guess," clearing alerts
 document.onkeyup = function (event) {
   var guess = event.key;
   console.log("user guessed " + guess);
+  successAlertHTM.style.visibility = "hidden";
+  failAlertHTM.style.visibility = "hidden";
+  NotLetterAlertHTM.style.visibility = "hidden";
 
   // checking whether user typed a letter.
   var isLetter = alphabet.includes(guess);
@@ -37,14 +47,14 @@ document.onkeyup = function (event) {
   // adding to win if guessed, updating html counter, then resetting guessesLeft to nine, updating html guesses left, emptying guessed array, resetting html guessed list; establishing new guessTarget
   if (isLetter) {
     if (guess === guessTarget) {
-      alert("You got it!");
+      successAlertHTM.style.visibility = "visible";
       wins++;
       winCountHTM.textContent = "Wins: "+wins;
       console.log("wins: " + wins);
       guessesLeft = 9;
       guessesLeftHTM.textContent = "Guesses Left: "+guessesLeft;
       guessed = [];
-      guessedHTM.textContent = "Your Guesses So Far:";
+      guessedHTM.textContent = "Your Guesses:";
       guessTarget = alphabet[Math.floor(Math.random() * alphabet.length)];
       console.log("Guess target: " + guessTarget)
     }
@@ -56,15 +66,16 @@ document.onkeyup = function (event) {
       guessesLeftHTM.textContent = "Guesses Left: "+guessesLeft;
       guessed.push(guess);
       console.log("letters guessed: " + guessed);
-      guessedHTM.textContent = "Your Guesses So Far: "+guessed;
+      guessedHTM.textContent = "Your Guesses: "+guessed;
       if (guessesLeft === 0) {
         losses++;
+        failAlertHTM.style.visibility = "visible";
         console.log("losses: " + losses);
         lossCountHTM.textContent = "Losses: "+losses;
         guessesLeft = 9;
         guessesLeftHTM.textContent = "Guesses Left: "+guessesLeft;
         guessed = [];
-        guessedHTM.textContent = "Your Guesses So Far:";
+        guessedHTM.textContent = "Your Guesses:";
         guessTarget = alphabet[Math.floor(Math.random() * alphabet.length)];
         console.log("guess target: " + guessTarget);
       }
@@ -74,7 +85,7 @@ document.onkeyup = function (event) {
 
   // else in case button pressed is not letter.
   else (
-    alert("you must press a letter key.")
+    NotLetterAlertHTM.style.visibility = "visible"
   )
 }
 
